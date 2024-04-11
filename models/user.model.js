@@ -1,0 +1,57 @@
+const mongoose=require('mongoose')
+const usermodel=new mongoose.Schema({
+     firstName:{
+        type:String,
+        require:true,
+        trim:true
+     },
+     lastName:{
+        type:String,
+        require:true,
+        trim:true
+     },
+     email:{
+        type:String,
+        require:true,
+        trim:true
+     },
+     password:{
+        type:String,
+        require:true
+     },
+     confirmpassword:{
+      type:String,
+      require:true
+     },
+     contact:{
+      type:Number,
+      require:true
+     },
+     accountType:{
+        type:String,
+        enum:["student","Admin","Instructor"],
+        require:true
+     },
+     additionalDetails:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"profile",
+        require:true
+     },
+     courses:[
+        {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Course",
+        require:true
+        }
+     ],
+     image:{
+        type:String,
+        require:true
+     },
+     otp:{
+      type:Number,
+      require:true
+     }
+})
+
+module.exports=mongoose.model("userModel",usermodel)
